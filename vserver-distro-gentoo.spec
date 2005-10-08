@@ -50,10 +50,10 @@ s,@portagedir@,%{_portagedir},
 rm -rf $RPM_BUILD_ROOT
 
 %post
-if [ "$1" != 1 ]; then
+if [ "$1" = 1 ]; then
 %banner -e %{name} <<EOF
-Please read http://www.gentoo.org/doc/en/vserver-howto.xml how to
-create gentoo guest vservers.
+Please read http://www.gentoo.org/doc/en/vserver-howto.xml#doc_chap3
+how to create gentoo guest vservers.
 
 vserver-new is called vserver-gentoo-new in PLD Linux.
 
