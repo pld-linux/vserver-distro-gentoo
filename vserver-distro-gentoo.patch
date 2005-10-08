@@ -1,0 +1,27 @@
+--- ./tools/vserver-new~	2005-09-30 14:48:57.000000000 +0300
++++ ./tools/vserver-new	2005-10-09 01:05:54.000000000 +0300
+@@ -434,10 +434,10 @@
+ #------------------------------------------------------------------------------#
+ # Main app                                                                     #
+ #------------------------------------------------------------------------------#
+-if [ -r /sbin/functions.sh ]; then
+-	source /sbin/functions.sh
++if [ -r @distdir@/functions.sh ]; then
++	source @distdir@/functions.sh
+ else
+-	echo "/sbin/functions.sh missing. Are you running Gentoo?"
++	echo "@distdir@/functions.sh missing."
+ fi
+ 
+ usage() {
+--- ./tools/vserver-new~	2005-10-09 01:16:18.000000000 +0300
++++ ./tools/vserver-new	2005-10-09 01:24:57.000000000 +0300
+@@ -233,7 +233,7 @@
+ 	
+ 	mkdir usr/portage &>/dev/null || die "failed to create portdir"
+ 	
+-	local portdir="`portageq portdir`"
++	local portdir="@portagedir@"
+ 	
+ 	[ -z "${portdir}" ] && die "host has no portage tree!"
+ 	
