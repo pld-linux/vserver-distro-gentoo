@@ -1,7 +1,7 @@
 Summary:	VServer build template for Gentoo
 Name:		vserver-distro-gentoo
 Version:	1.0
-Release:	1.9
+Release:	1.10
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.linux.ee/pub/gentoo/distfiles/distfiles/rc-scripts-1.6.13.tar.bz2
@@ -15,9 +15,7 @@ Patch1:		vserver-new_dev-fix.patch
 Patch2:		vserver-new_drop-defaulttar.patch
 URL:		http://dev.gentoo.org/~hollow/vserver/
 BuildRequires:	rpmbuild(macros) >= 1.194
-Requires:	bash
 Requires:	util-vserver-build
-Requires:	wget
 Requires:	tar
 Requires:	bzip2
 ExclusiveArch:	%{ix86}
@@ -40,11 +38,13 @@ VServer build template for Gentoo Linux.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_distdir},%{_sbindir},%{_portagedir}}
-install rc-scripts-1.6.13/sbin/functions.sh $RPM_BUILD_ROOT%{_distdir}
+P=$(basename %{SOURCE0} .tar.bz2)
+install ${P}/sbin/functions.sh $RPM_BUILD_ROOT%{_distdir}
 sed -e '
 s,@distdir@,%{_distdir},
 s,@portagedir@,%{_portagedir},
 ' tools/vserver-new > $RPM_BUILD_ROOT%{_sbindir}/vserver-gentoo-new
+chmod +x $RPM_BUILD_ROOT%{_sbindir}/vserver-gentoo-new
 
 %clean
 rm -rf $RPM_BUILD_ROOT
