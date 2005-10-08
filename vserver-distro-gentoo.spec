@@ -11,7 +11,7 @@
 Summary:	VServer build template for Gentoo
 Name:		vserver-distro-gentoo
 Version:	1.0
-Release:	1.6
+Release:	1.7
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.linux.ee/pub/gentoo/distfiles/distfiles/rc-scripts-1.6.13.tar.bz2
@@ -22,7 +22,7 @@ Source2:	ftp://ftp.linux.ee/pub/gentoo/distfiles/snapshots/portage-20051007.tar.
 # NoSource2-md5:	be45da32a8c8c420a3c45de125566311
 Patch0:		%{name}.patch
 URL:		http://dev.gentoo.org/~hollow/vserver/
-BuildRequires:	fakeroot
+BuildRequires:	rpmbuild(macros) >= 1.194
 Requires:	bash
 Requires:	util-vserver-build
 Requires:	wget
@@ -54,6 +54,22 @@ s,@portagedir@,%{_portagedir},
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+if [ "$1" != 1 ]; then
+%banner -e %{name} <<EOF
+Please read http://www.gentoo.org/doc/en/vserver-howto.xml how to
+create gentoo guest vservers.
+
+vserver-new is called vserver-gentoo-new in PLD Linux.
+
+You will also need unpacked portage tree in /usr/portage. You can get
+one from your closest gentoo mirror. If you can't find one then
+ftp://ftp.linux.ee/pub/gentoo/distfiles/snapshots/portage-latest.tar.bz2
+will do.
+EOF
+#' vim
+fi
 
 %files
 %defattr(644,root,root,755)
