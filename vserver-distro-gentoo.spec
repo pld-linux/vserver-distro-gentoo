@@ -1,17 +1,7 @@
-# NOTE
-# - to update md5 either copy them from web, or run:
-%if 0
-./builder vserver-distro-gentoo.spec -5
-./builder vserver-distro-gentoo.spec -5 --target i386
-./builder vserver-distro-gentoo.spec -5 --target pentium3
-./builder vserver-distro-gentoo.spec -5 --target pentium4
-./builder vserver-distro-gentoo.spec -5 --target athlon
-%endif
-#
 Summary:	VServer build template for Gentoo
 Name:		vserver-distro-gentoo
 Version:	1.0
-Release:	1.7
+Release:	1.9
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.linux.ee/pub/gentoo/distfiles/distfiles/rc-scripts-1.6.13.tar.bz2
@@ -21,6 +11,8 @@ Source1:	http://dev.gentoo.org/~hollow/vserver/util-vserver/util-vserver-0.30.20
 Source2:	ftp://ftp.linux.ee/pub/gentoo/distfiles/snapshots/portage-20051007.tar.bz2
 # NoSource2-md5:	be45da32a8c8c420a3c45de125566311
 Patch0:		%{name}.patch
+Patch1:		vserver-new_dev-fix.patch
+Patch2:		vserver-new_drop-defaulttar.patch
 URL:		http://dev.gentoo.org/~hollow/vserver/
 BuildRequires:	rpmbuild(macros) >= 1.194
 Requires:	bash
@@ -37,11 +29,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_portagedir	/usr/portage
 
 %description
-VServer build template for Gentoo
+VServer build template for Gentoo Linux.
 
 %prep
 %setup -q -c -a1
 %patch0 -p1
+%patch1 -p0
+%patch2 -p0
 
 %install
 rm -rf $RPM_BUILD_ROOT
