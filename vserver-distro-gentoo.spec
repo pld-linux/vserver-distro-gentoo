@@ -1,7 +1,7 @@
 Summary:	VServer build template for Gentoo
 Name:		vserver-distro-gentoo
 Version:	1.0
-Release:	1.10
+Release:	1.11
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.linux.ee/pub/gentoo/distfiles/distfiles/rc-scripts-1.6.13.tar.bz2
@@ -18,7 +18,6 @@ BuildRequires:	rpmbuild(macros) >= 1.194
 Requires:	util-vserver-build
 Requires:	tar
 Requires:	bzip2
-ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_distro		gentoo
