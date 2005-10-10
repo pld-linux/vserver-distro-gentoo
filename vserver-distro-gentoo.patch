@@ -25,3 +25,21 @@
  	
  	[ -z "${portdir}" ] && die "host has no portage tree!"
  	
+--- ./tools/vserver-new~	2005-10-09 04:11:57.339583330 +0300
++++ ./tools/vserver-new	2005-10-09 04:12:11.526532042 +0300
+@@ -118,7 +118,14 @@
+ 		${interfaceopts} \
+ 		--initstyle plain
+ 	eend $? || ${target}_clean 2
+-	
++
++	cat >> "/etc/vservers/${dst}/fstab" <<-EOF
++
++# shared portage tree
++#/usr/portage           /usr/portage           none bind,ro 0 0
++#/usr/portage/distfiles /usr/portage/distfiles none bind,rw 0 0
++EOF
++
+ 	rm -rf ${dst_vdir}/*
+ 	
+ 	if [ $dst_vdir_mount -eq 0 ]; then
