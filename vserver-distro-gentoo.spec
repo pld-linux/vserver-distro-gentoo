@@ -1,4 +1,5 @@
 Summary:	VServer build template for Gentoo
+Summary(pl):	Szablon do budowania VServera dla Gentoo
 Name:		vserver-distro-gentoo
 Version:	1.0
 Release:	1.12
@@ -15,9 +16,9 @@ Patch1:		vserver-new_dev-fix.patch
 Patch2:		vserver-new_drop-defaulttar.patch
 URL:		http://dev.gentoo.org/~hollow/vserver/
 BuildRequires:	rpmbuild(macros) >= 1.194
-Requires:	util-vserver-build
-Requires:	tar
 Requires:	bzip2
+Requires:	tar
+Requires:	util-vserver-build
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_distro		gentoo
@@ -27,6 +28,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 VServer build template for Gentoo Linux.
+
+%description -l pl
+Szablon do budowania VServera dla Gentoo.
 
 %prep
 %setup -q -c -a1
