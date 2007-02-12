@@ -1,5 +1,5 @@
 Summary:	VServer build template for Gentoo
-Summary(pl.UTF-8):   Szablon do budowania VServera dla Gentoo
+Summary(pl.UTF-8):	Szablon do budowania VServera dla Gentoo
 Name:		vserver-distro-gentoo
 Version:	1.0
 Release:	1.12
